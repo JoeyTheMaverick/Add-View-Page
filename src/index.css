@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@keyframes bubbleUpSmooth {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  60% {
+    transform: scale(1.05) translateY(-6px);
+  }
+  100% {
+    transform: scale(1.02) translateY(-3px);
+  }
+}
+
+.bubble-up {
+  transition: box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bubble-up:hover,
+.bubble-up:focus {
+  animation: bubbleUpSmooth 0.70s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes modal-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-pop {
+  animation: modal-pop 0.25s cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+@keyframes carousel-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.carousel-fade {
+  animation: carousel-fade 0.5s cubic-bezier(0.4,0,0.2,1);
+}
