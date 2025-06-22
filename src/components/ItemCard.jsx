@@ -6,7 +6,6 @@ export default function ItemCard({ item }) {
 
   return (
     <>
-      {/* Card */}
       <div
         className="relative rounded-2xl overflow-hidden shadow-xl cursor-pointer transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
         onClick={() => setIsOpen(true)}
@@ -23,7 +22,6 @@ export default function ItemCard({ item }) {
         </div>
       </div>
 
-      {/* Modal / Expanded View */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4"
@@ -31,9 +29,8 @@ export default function ItemCard({ item }) {
         >
           <div
             className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto p-6 relative animate-fadeIn"
-            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-2xl font-bold"
@@ -42,7 +39,6 @@ export default function ItemCard({ item }) {
               &times;
             </button>
 
-            {/* Carousel */}
             <div className="mb-6">
               {item.additionalImages && item.additionalImages.length > 0 ? (
                 <ImageCarousel images={item.additionalImages} />
@@ -51,7 +47,6 @@ export default function ItemCard({ item }) {
               )}
             </div>
 
-            {/* Description */}
             {item.description && (
               <p className="text-gray-700 text-lg">{item.description}</p>
             )}
