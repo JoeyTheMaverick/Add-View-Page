@@ -15,11 +15,13 @@ export default function AddItemPage() {
   const [success, setSuccess] = useState(false);
   const { addItem } = useItems();
   const navigate = useNavigate();
+  const [coverImageError, setCoverImageError] = useState('');
 
   function handleChange(e) {
     const { name, value, files } = e.target;
     if (name === "coverImage") {
       setForm(f => ({ ...f, coverImage: files[0] }));
+      if (files[0]) setCoverImageError('');
     } else if (name === "additionalImages") {
       setForm(f => ({ ...f, additionalImages: Array.from(files) }));
     } else {
@@ -29,7 +31,11 @@ export default function AddItemPage() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!form.name || !form.coverImage) return;
+    if (!form.name || !form.coverImage) {
+      setCoverImageError('Please upload a cover image.');
+      return;
+    }
+    setCoverImageError('');
     addItem({
       ...form,
       id: Date.now(),
@@ -129,10 +135,12 @@ export default function AddItemPage() {
                     type="file"
                     accept="image/*"
                     name="coverImage"
-                    required
                     onChange={handleChange}
                     className="hidden"
                     />
+                    {coverImageError && (
+                      <div className="text-red-600 text-xs mt-1">{coverImageError}</div>
+                    )}
                     {form.coverImage && (
                     <span className="text-sm text-gray-600">{form.coverImage.name}</span>
                     )}
